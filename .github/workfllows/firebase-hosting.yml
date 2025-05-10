@@ -1,0 +1,33 @@
+name: Firebase Hosting Deployment
+
+on:
+  push:
+    branches:
+      - main  # or any branch you want to deploy from (e.g., "master")
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # or any version you prefer
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the project
+      run: npm run build  # Use your build command if different, e.g., "npm run build"
+
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
+
+    - name: Deploy to Firebase Hosting
+      run: |
+        firebase use --add  # This allows you to select the Firebase project interactively (optional)
+        firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
