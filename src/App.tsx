@@ -1,5 +1,8 @@
-function Ohh() {
-  return <div>Hi hi hi react</div>
+function App() {
+  return <div className= "d-flex justify-content-center align-items-start vh-100">
+    <h1 className="mt-4">hi</h1>
+  </div>
 }
 
-export default Ohh;
+export default App;
+
